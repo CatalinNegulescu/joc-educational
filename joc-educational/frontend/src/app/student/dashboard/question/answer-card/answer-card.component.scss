@@ -1,0 +1,13 @@
+.answer-card {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  mat-card {
+    width: 50%;
+    margin: 10px;
+  }
+
+ .selected {
+    background-color:  #9ce7e7 !important;
+  }

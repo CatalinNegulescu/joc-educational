@@ -1,0 +1,131 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header" *ngFor="let breadscrum of breadscrums">
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    <div class="row">
+      <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="body">
+            <div class="row align-items-center">
+              <div class="col-md-8">
+                <h4>
+                  <div class="weight-600 col-pink pt-1"> Joc educational - Quick Mind </div>
+                </h4>
+     
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12" *ngIf="!startingTest">
+        <div class="card">
+          <div class="body">
+            <form class="validate-form" [formGroup]="testForm">
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                  <div class="row">
+
+                    <div class="col-xl-4">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Clasa</mat-label>
+                        <mat-select formControlName="classId">
+                          <mat-option *ngFor="let class of classList" [value]="class.id">
+                            {{class.description}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="testForm.get('classId')?.hasError('required')">
+                          Clasa este obligatoriu!
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+
+                </div>
+                <button mat-raised-button color="primary" class="auth-form-btn" (click)="getTest()">
+                  Incepe testul
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12" *ngIf="startingTest">
+        <div class="card">
+          <div class="body">
+            <div class="parent">
+              <div class="test" *ngIf="!isTestComplete">
+                <h1>Test</h1>
+                <div class="question-container">
+                  <app-question [question]="questions[currentQuestionIndex]" [isLastQuestion]="isLastQuestion()"
+                    (nextQuestion)="nextQuestion()"
+                    (optionSelected)="calculateScore($event, questions[currentQuestionIndex].correctOption)"></app-question>
+                </div>
+
+                <button mat-raised-button color="primary" (click)="finishTest()" *ngIf="isLastQuestion()">
+                  Termină test
+                </button>
+                <!-- <button *ngIf="isLastQuestion()" >Termină testul</button> -->
+              </div>
+              <div class="test-complete" *ngIf="isTestComplete">
+                <h1>Testul s-a incheiat!</h1>
+
+                <div class="total-time">
+                  Timp total: {{ timeElapsed }} secunde
+                </div>
+                <button mat-raised-button color="primary" class="auth-form-btn" (click)="getOtherTest()">
+                  Alege alt test
+                </button>
+                <hr>
+                <button mat-raised-button color="secondary" class="auth-form-btn" (click)="getReviewTest()">
+                  Vizualizare raspunsuri corecte
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12" *ngIf="reviewTest">
+        <div class="card">
+          <div class="body">
+            <app-question-review [questionsForReview]="questionsForReview"></app-question-review>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+        <div class="card l-bg-purple p-2 px-4 text-white py-3">
+          <div class="info d-flex justify-content-between align-items-center">
+            <div class="d-flex flex-column text-white font-22"> <span>Demo aplicatie</span>
+              <small class="mt-2"><i class="far fa-clock msr-2"></i> Implementarea actuala reprezinta doar un
+                POC</small>
+            </div>
+          </div>
+        </div>
+        <div class="card l-bg-green p-2 px-4 text-white py-3" *ngIf="startingTest">
+          <div class="info d-flex justify-content-between align-items-center">
+            <div class="d-flex flex-column text-white font-22"> <span>
+                <div class="final-score">
+                  Punctaj final: {{ score }}/{{ questions.length }}
+                </div>
+              </span>
+              <div class="score">
+                Punctaj: {{ score }}
+              </div>
+              <small class="mt-2"><i class="far fa-clock msr-2"></i>
+                <div class="timer">
+                  Timp scurs: {{ timeElapsed }} secunde
+                </div>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

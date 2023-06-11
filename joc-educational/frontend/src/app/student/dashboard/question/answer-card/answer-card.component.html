@@ -1,0 +1,21 @@
+
+<div class="answer-card">
+    <mat-card [class.selected]="isSelected" (click)="selectOption()">
+      <mat-card-content>
+        <p>{{ option1 }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+<!-- <mat-card *ngFor="let option of options" (click)="selectOption(option)">
+    <mat-card-content>
+      <p>{{ option }}</p>
+    </mat-card-content>
+  </mat-card> -->
+
+<!-- <mat-card class="answer-card" (click)="selectOption()">
+    <mat-card-content>
+      <h3>{{ option }}</h3>
+      <p>{{ answerText }}</p>
+    </mat-card-content>
+  </mat-card> -->

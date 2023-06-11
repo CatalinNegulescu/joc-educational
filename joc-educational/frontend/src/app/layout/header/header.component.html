@@ -1,0 +1,44 @@
+<nav #navbar class="navbar active">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a href="#" onClick="return false;" class="navbar-toggle collapsed"
+        (click)="isNavbarCollapsed = !isNavbarCollapsed" aria-expanded="false"></a>
+      <a href="#" onClick="return false;" class="bars" (click)="mobileMenuSidebarOpen($event,'overlay-open')"></a>
+      <a class="navbar-brand" routerLink={{homePage}}>
+        <img src="assets/images/logo.png" alt="" style="max-height: fit-content;"/>
+        <span class="logo-name">Quick Mind</span>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" [ngClass]="isNavbarCollapsed ? '' : 'show'">
+      <ul class="float-start collapse-menu-icon">
+        <li>
+          <button mat-button (click)="callSidemenuCollapse()" class="sidemenu-collapse nav-notification-icons"> <i
+              class="material-icons-outlined icon-color">
+              menu
+            </i></button>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+    
+        
+
+       
+        <li class="nav-item user_profile">
+          <button mat-button [matMenuTriggerFor]="profilemenu">
+            <div class="chip dropdown-toggle" class="pt-0">
+              <span>{{username}}</span>
+            </div>
+          </button>
+          <mat-menu #profilemenu="matMenu" class="profile-menu">
+            <div class="noti-list">
+              <div class="menu ">
+                <div class="user_dw_menu">
+                </div>
+              </div>
+            </div>
+          </mat-menu>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

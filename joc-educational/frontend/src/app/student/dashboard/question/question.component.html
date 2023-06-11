@@ -1,0 +1,12 @@
+<h2>{{ question.questionText }}</h2>
+<div class="answers-container">
+    <app-answer-card *ngFor="let option1 of question.options" [option1]="option1"
+         (optionSelected)="selectOption($event)"
+         [isSelected]="option1 === selectedAnswer"
+         ></app-answer-card>
+
+</div>
+
+<button mat-raised-button color="primary" (click)="nextQuestion.emit()" *ngIf="!isLastQuestion">
+  Urmatoarea intrebare
+</button>

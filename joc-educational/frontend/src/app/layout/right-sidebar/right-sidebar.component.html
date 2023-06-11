@@ -1,0 +1,44 @@
+<div class="settingSidebar" [ngClass]="isOpenSidebar ? 'showSettingPanel' : ''">
+  <a href="javascript:void(0)" class="settingPanelToggle" (click)="toggleRightSidebar()">
+    <app-feather-icons [icon]="'settings'" [class]="'setting-sidebar-icon'"></app-feather-icons>
+  </a>
+  <ng-scrollbar [style.height]="maxHeight + 'px'" visibility="hover">
+    <div class="settingSidebar-body ps-container ps-theme-default">
+      <div class=" fade show active">
+        <div class="setting-panel-header"> Personalizare aplicatie
+        </div>
+        <div class="p-15 border-bottom">
+          <h6 class="font-medium m-b-10">Selectati modul de lucru</h6>
+          <div class="flex flex-wrap hiddenradio">
+            <div class="flex flex-col ">
+              <label>
+                <input type="radio" name="value" value="light" [checked]="isDarTheme === false ? true : false"
+                  (click)="lightThemeBtnClick()">
+                <img src="assets/images/light.png">
+              </label>
+              <div class="mt-1 text-md text-center"> Luminos </div>
+            </div>
+            <div class="flex flex-col mt-3"> <label>
+                <input type="radio" name="value" value="dark" [checked]="isDarTheme === true ? true : false"
+                  (click)="darkThemeBtnClick()">
+                <img src="assets/images/dark.png">
+              </label>
+              <div class="mt-1 text-md text-center"> Intunecat </div>
+            </div>
+          </div>
+        </div>
+        <div class="rightSetting">
+          <h6 class="font-medium m-b-10">Culori Meniu</h6>
+          <mat-button-toggle-group class="mt-2" [value]="isDarkSidebar ? 'dark' : 'light'">
+            <mat-button-toggle (click)="lightSidebarBtnClick()" value="light">Alb</mat-button-toggle>
+            <mat-button-toggle (click)="darkSidebarBtnClick()" value="dark">Negru</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+        <div class="rightSetting">
+          <h6 class="font-medium m-b-10">Pozitie meniu</h6>
+          <mat-slide-toggle class="mt-2" [checked]="isRtl" (change)="switchDirection($event)"></mat-slide-toggle>
+        </div>
+      </div>
+    </div>
+  </ng-scrollbar>
+</div>

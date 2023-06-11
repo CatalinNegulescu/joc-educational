@@ -1,0 +1,26 @@
+
+  
+//   li.correct {
+//     background-color: rgb(135, 231, 135);
+//   }
+
+//   .dark li.correct {
+//     background-color: rgb(138, 135, 231);
+//   }  
+  
+//   li.wrong {
+//     background-color: rgb(209, 120, 120);
+//   }
+
+  .correct-mark::before {
+    content: '\2714';
+    color: green;
+    margin-right: 5px;
+  }
+  
+  .wrong-mark::before {
+    content: '\2716';
+    color: red;
+    margin-right: 5px;
+    
+  }

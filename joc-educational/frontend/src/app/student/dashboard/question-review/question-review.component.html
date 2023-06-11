@@ -1,0 +1,24 @@
+<ul>
+    <li *ngFor="let question of questionsForReview" [class.correct]="question.itWasMarkedAsCorrect" [class.wrong]="!question.itWasMarkedAsCorrect">
+      <h3>{{ question.questionText }} <span [ngClass]="{'correct-mark': question.itWasMarkedAsCorrect, 'wrong-mark': !question.itWasMarkedAsCorrect}"></span></h3>
+      
+      <ul>
+        <li *ngFor="let option of question.options">
+          {{ option }}
+        </li>
+      </ul>
+
+      <ul>
+       <b> Raspuns corect:</b>
+        <h5>
+            {{question.correctOption}}
+        </h5>
+        <b *ngIf="!question.itWasMarkedAsCorrect"> Raspuns selectat:</b>
+        <h5 *ngIf="!question.itWasMarkedAsCorrect">
+            {{question.lastOptionSelected}}
+        </h5> 
+        
+      </ul>
+    </li>
+    <hr>
+  </ul>
